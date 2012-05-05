@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "home" %>
 <h1>Welcome User</h1>
 <div>
 <%= form_tag(:controller => "siteinfo", :action => "create", :method => "get") do %>
@@ -11,7 +12,8 @@
   <%= text_field_tag(:no_of_lights)   %>
   <br/>
   <%= label_tag("Type of Light") %>
-  <%= select_tag(:legacylight_id, options_from_collection_for_select(Legacylight.all, :id, :light_name)) %>
+  <% # select_tag(:legacylight_id, options_from_collection_for_select([1,"test"])) %>
+  <%=  select_tag("LIGHT", "<option id>David</option>".html_safe) %>
 <% end %>
 
 </div>
