@@ -56,6 +56,7 @@ Energyapp::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
-  resources :siteinfo
+  resources   :siteinfo, :action => 'show'
+  resources  :audit, :action => 'show'
   root :to => "home#index"
 end

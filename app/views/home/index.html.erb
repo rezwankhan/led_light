@@ -1,19 +1,22 @@
 <%= stylesheet_link_tag "home" %>
 <h1>Welcome User</h1>
 <div>
-<%= form_tag(:controller => "siteinfo", :action => "create", :method => "get") do %>
-  <%= label_tag("Enter Name")   %>
-  <%= text_field_tag(:name) %>
+<%= form_tag(:controller => "audit", :action => "create", :method => "get") do %>
+  <% #label_tag("Enter Name")   %>
+  <% #text_field_tag(:name) %>
   <br/>
-  <%= label_tag("Enter Zip Code") %>
-  <%= text_field_tag(:zipcode) %>
+  <%= label_tag("Pick City") %>
+  <!-- Here you will pull from the city table -->
+  <%=  select_tag(:city,options_from_collection_for_select(City.all, :id, :city)) %>
   <br/>
-  <%=  label_tag("No of lights you own")%>
-  <%= text_field_tag(:no_of_lights)   %>
+  <%  #label_tag("No of lights you own")%>
+  <% #text_field_tag(:no_of_lights)   %>
   <br/>
   <%= label_tag("Type of Light") %>
   <% # select_tag(:legacylight_id, options_from_collection_for_select([1,"test"])) %>
-  <%=  select_tag("LIGHT", "<option id>David</option>".html_safe) %>
+  <%=  select_tag(:light, options_from_collection_for_select(Legacylight.all, :id, :name)) %>
+  <br/>
+  <%= submit_tag("Enter")   %>
 <% end %>
 
 </div>

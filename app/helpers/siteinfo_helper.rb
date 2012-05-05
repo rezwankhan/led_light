@@ -1,0 +1,2 @@
+module SiteinfoHelper
+end
