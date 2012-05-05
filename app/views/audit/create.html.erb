@@ -1,13 +1,21 @@
-<h1>Test</h1>
-<%= @city_name %>
-<%= @no_lights  %>
 
-<div>
+<div class="clear-div">
+<%= @city_name %>
+  <br/>
+<%= @no_lights  %>
+</div>
+
+<div class="float-left half-width" >
   <p><b>Name:</b>   <%= @light_chosen.name %></p>
-  <p><b>Make:</b>   <%= @light_chosen.make %></p>
-  <p><b>Retail Cost:</b>   <%= @light_chosen.retailcost %></p>
-  <p><b>Watt:</b>   <%= @light_chosen.watt %></p>
-  <p><b>Avg. Lumen:</b>   <%= @light_chosen.avglumen %></p>
-  <p><b>Life:</b>   <%= @light_chosen.life %></p>
-  <p><b>Color Temp:</b>   <%= @light_chosen.colortemp %></p>
+  <p><b>Up-front Investment:</b>   $<%= @upfront_inv %></p>
+  <p><b>Annual Electricity Consumption:</b>   $<%= @var_cost %></p>
+  <p><b>Replacement Cost:</b>   $<%= @replacement_cost %></p>
+</div>
+
+<div class="float-right half-width">
+  <p><b>Name:</b>   <%= @led.name %></p>
+  <%=  @led.retailcost  %>
+  <p><b>Up-front Investment:</b>   $<%= @led_upfront_inv %></p>
+  <p><b>Annual Electricity Consumption:</b>   $<%= @led_var_cost %></p>
+  <p><b>Replacement Cost:</b>   $<%= @led_replacement_cost %></p>
 </div>
