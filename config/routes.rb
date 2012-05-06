@@ -60,5 +60,8 @@ Energyapp::Application.routes.draw do
   resources   :npvcalc,  :action => 'show'
   resources  :audit, :action => 'show'
   match "/home/brand_name" => "home#brand_name"
+  match "/home/fridgebrand" => "home#fridge_brand_name"
+  match "/home/dwbrand" => "home#dw_brand_name"
+
   root :to => "home#index"
 end

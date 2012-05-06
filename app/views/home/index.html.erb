@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "home" %>
 
+
+
 <h1 id="hey">Welcome User</h1>
 <div>
   <%= form_tag(:controller => "npvcalc", :action => "create", :method => "get") do %>
@@ -18,12 +20,12 @@
     <!-- Pick dishwasher -->
     <p>Dishwasher</p>
     <span>Brand</span><%= select_tag(:brand_dw, options_for_select(@brand_dw)) %>
-    <span>Model</span><%= select_tag(:name_dw, options_from_collection_for_select(Washer.all, :id, :model)) %>
+    <span>Model</span><%= select_tag(:name_dw, options_from_collection_for_select(Dishwasher.all, :id, :model)) %>
 
     <!-- Pick refrigarator -->
-    <p>Refrigarator</p>
+    <p>Refridgerator</p>
     <span>Brand</span><%= select_tag(:brand_rfg, options_for_select(@brand_rfg)) %>
-    <span>Model</span><%= select_tag(:name_rfg, options_from_collection_for_select(Washer.all, :id, :model)) %>
+    <span>Model</span><%= select_tag(:name_rfg, options_from_collection_for_select(Refridgerator.all, :id, :model)) %>
     
     <%= submit_tag("Enter") %>
   <% end %>
@@ -44,9 +46,31 @@
         }
       });
     });
+   // Getting fridge models based on brand name
+   $("#brand_rfg").change(function(){
+      $.ajax({
+        type : 'GET',
+        url : 'home/fridgebrand?brandf='+$("#brand_rfg").val(),
+        success : function(response) {
+          $("#name_rfg").html(response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+          console.log("oops");
+        }
+      });
+    });
+   // Getting washingmachine models based on brand name
+   $("#brand_dw").change(function(){
+      $.ajax({
+        type : 'GET',
+        url : 'home/dwbrand?branddw='+$("#brand_dw").val(),
+        success : function(response) {
+          $("#name_dw").html(response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+          console.log("oops");
+        }
+      });
+    });
   });
-
-  // Getting washingmachine models based on brand name
-
-
 </script>
