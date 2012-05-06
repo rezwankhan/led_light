@@ -24,16 +24,19 @@ class NpvcalcController < ApplicationController
             and volume between 0.9*" + @washer_vol.to_s() + " and 1.1 *" + @washer_vol.to_s() +" order by kwhyr asc limit 10"
 
     @optimized_washers = Washer.find_by_sql(query)
+
     @optimized_washer_deltas =   Hash.new
+    @optimized_washer_savings = Hash.new
 
     @optimized_washers.each { |e|
-      @optimized_washer_deltas[e.id] = (@washer_kwhyr - e.kwhyr)* @rate
+      # Format: {"id" => [Price, Delta]}
+      @optimized_washer_deltas[e.id] = [500, (@washer_kwhyr - e.kwhyr)* @rate]
     }
-    @optimized_washer_savings = Hash.new
+    
     @optimized_washer_deltas.each { |e|
-      npv = -1*Npvcalc::PRICE
+      npv = -1*e[1][0]
       for i in 1..10
-        npv += e[1]/(Npvcalc::DISCOUNT_RATE ** i)
+        npv += e[1][1]/(Npvcalc::DISCOUNT_RATE ** i)
       end
       @optimized_washer_savings[e[0]] = npv
     }
@@ -47,6 +50,25 @@ class NpvcalcController < ApplicationController
             and cast(size as float8) between 0.9*" + @f_s_size.to_s() + " and 1.1 *" + @f_s_size.to_s() +" order by kwhyr asc limit 10"
 
     @opt_fridges = Refridgerator.find_by_sql(f_query) 
+
+    @opt_fridge_deltas =   Hash.new
+    @opt_fridge_info = Hash.new
+
+    @opt_fridges.each { |e|
+      # Format: {"id" => [Price, Delta]}
+      @opt_fridge_deltas[e.id] = [500, (@f_s_kwhyr - e.kwhyr)* @rate]
+    }
+
+    @opt_fridge_deltas.each { |e|
+      npv = -1*e[1][0]
+      for i in 1..10
+        npv += e[1][1]/(Npvcalc::DISCOUNT_RATE ** i)
+      end
+      @opt_fridge_info[e[0]] = npv
+    }
+
+
+
     
     # Calculate all dishwasher information
     @dw_select = Dishwasher.find(params[:name_dw])
@@ -55,6 +77,23 @@ class NpvcalcController < ApplicationController
     d_query = "select * from dishwashers where kwhyr <" + @d_s_kwhyr.to_s() + "order by kwhyr asc limit 10"
 
     @opt_dws = Dishwasher.find_by_sql(d_query)
+
+    @opt_dw_deltas =   Hash.new
+    @opt_dw_info = Hash.new
+
+    @opt_dws.each { |e|
+      # Format: {"id" => [Price, Delta]}
+      @opt_dw_deltas[e.id] = [500, (@d_s_kwhyr - e.kwhyr)* @rate]
+    }
+
+    @opt_dw_deltas.each { |e|
+      npv = -1*e[1][0]
+      for i in 1..10
+        npv += e[1][1]/(Npvcalc::DISCOUNT_RATE ** i)
+      end
+      @opt_dw_info[e[0]] = npv
+    }
+
 
   end
   
