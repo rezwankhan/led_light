@@ -57,6 +57,8 @@ Energyapp::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   resources   :siteinfo, :action => 'show'
+  resources   :npvcalc,  :action => 'show'
   resources  :audit, :action => 'show'
+  match "/home/brand_name" => "home#brand_name"
   root :to => "home#index"
 end
