@@ -3,27 +3,27 @@
 
 
 <h1 id="hey">Welcome User</h1>
-<div>
+<div class="apps">
   <%= form_tag(:controller => "npvcalc", :action => "create", :method => "get") do %>
     <br/>
-    <%= label_tag("Pick City") %>
+    <%= label_tag("Pick your city") %>
     <!-- Here you will pull from the city table -->
     <%=  select_tag(:city,options_from_collection_for_select(City.all, :id, :city)) %>
     <br/>
     <h2> Pick Appliances </h2>
 
     <!-- Pick washer -->
-    <p>Washer</p>
+    <h3>Washing Machine</h3>
     <span>Brand</span><%= select_tag(:wash_b, options_for_select(@washer_brand)) %>
-    <span>Model</span><%= select_tag(:washer_name, options_from_collection_for_select(Washer.all, :id, :model)) %>
+    <span>Model</span><%= select_tag(:washer_name, :disabled=>true ,options_from_collection_for_select(Washer.all, :id, :model)) %>
 
     <!-- Pick dishwasher -->
-    <p>Dishwasher</p>
+    <h3>Dishwasher</h3>
     <span>Brand</span><%= select_tag(:brand_dw, options_for_select(@brand_dw)) %>
     <span>Model</span><%= select_tag(:name_dw, options_from_collection_for_select(Dishwasher.all, :id, :model)) %>
 
     <!-- Pick refrigarator -->
-    <p>Refridgerator</p>
+    <h3>Refrigerator</h3>
     <span>Brand</span><%= select_tag(:brand_rfg, options_for_select(@brand_rfg)) %>
     <span>Model</span><%= select_tag(:name_rfg, options_from_collection_for_select(Refridgerator.all, :id, :model)) %>
     

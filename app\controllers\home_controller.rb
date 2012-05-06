@@ -3,15 +3,15 @@ class HomeController < ApplicationController
 def index
   # Get all the washers
   @washer = Washer.all
-  @washer_brand = (((Washer.all).collect{|a| a.brand}).uniq).sort!
+  @washer_brand = ((Washer.all).collect{|a| a.brand}).uniq
   
   #Get all fridges 
   @fridges = Refridgerator.all
-  @brand_rfg = (((Refridgerator.all).collect{|a| a.brand}).uniq).sort!
+  @brand_rfg = ((Refridgerator.all).collect{|a| a.brand}).uniq
 
   #Get all dish-washers
   @dws = Dishwasher.all
-  @brand_dw = (((Dishwasher.all).collect{|a| a.brand}).uniq).sort!
+  @brand_dw = ((Dishwasher.all).collect{|a| a.brand}).uniq
 
 end
 
