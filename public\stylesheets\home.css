@@ -1,0 +1,99 @@
+@import "fontstyle.css";
+
+body{
+	background: #4e4e4e;
+	color:#fff;
+}
+
+div.apps {
+	width: 900px;
+	margin:0 auto;
+	padding:10px;
+	border: 1px solid #cccccc;
+	font-family: MuseoSlab100;
+}
+
+h1,h2 {
+	font-family: MuseoSlab700;
+}
+
+div.apps input, div.apps select {
+	border: 1px solid #A2A7A7;
+	margin: 10px;
+	padding: 4px;
+	width: 300px;
+	font-family: MuseoSlab100;
+}
+
+div.apps input[type=submit] {
+	border: 1px solid #A2A7A7;
+	margin: 10px;
+	padding: 4px;
+	width: 50px;
+}
+
+
+label {
+	font-family: MuseoSlab100;
+	width: 300px;
+	float: left;
+	clear: both
+}
+
+/*common elements*/
+a img {
+	border: 0 none;
+	text-decoration: none;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.half-width {
+	width: 50%;
+}
+
+.one-thirds-width {
+	width: 33%;
+}
+
+.one-fourths-width {
+	width: 25%;
+}
+
+.two-thirds-width {
+	width: 66%;
+}
+
+.clear-div {
+	clear: both;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
